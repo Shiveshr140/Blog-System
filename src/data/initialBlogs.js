@@ -1,5 +1,7 @@
 import { add } from "date-fns";
 
+////**** I have used date-fns library to modify the dates
+
 function fromToday(numDays, withTime = false) {
   const date = add(new Date(), { days: numDays });
   if (!withTime) date.setUTCHours(0, 0, 0, 0);
@@ -41,7 +43,7 @@ export const initialBlogs = [
   {
     id: "1b3a9efc-e6ba-4c95-9999-ce58f56eff14",
     title: "What if you are not author of the blog?",
-    tags: "React, Web Development",
+    tags: "Java Script",
     author: "Shivesh Rajput",
     createdAt: fromToday(-13),
     reposted: false,

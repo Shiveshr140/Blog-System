@@ -1,7 +1,7 @@
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-function TextEditor({ content, onSetContent, blog, isDarkMode = false }) {
+function TextEditor({ content, onSetContent, blog }) {
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, false] }],
@@ -27,13 +27,13 @@ function TextEditor({ content, onSetContent, blog, isDarkMode = false }) {
 
   const handleEditorChange = (value) => {
     console.log("value", value);
-    onSetContent(value); // Update the content state when the editor changes
+    onSetContent(value);
   };
 
   return (
     <ReactQuill
       value={content}
-      onChange={handleEditorChange} // Make sure to use the correct handler
+      onChange={handleEditorChange}
       modules={modules}
       formats={formats}
       placeholder={blog?.content ? "" : "Write your content here..."}

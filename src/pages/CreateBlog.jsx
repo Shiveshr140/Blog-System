@@ -1,10 +1,9 @@
-import CreatePost from "../features/user/CreatePost";
-// import Header from "../ui/Header";
+import CreateEditBlog from "../features/Blogs/CreateEditBlog";
 
 function CreateBlog() {
   return (
     <>
-      <CreatePost />
+      <CreateEditBlog />
     </>
   );
 }

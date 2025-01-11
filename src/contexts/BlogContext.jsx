@@ -2,6 +2,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 import { initialBlogs } from "../data/initialBlogs";
 
+/////******* This BlogContext is used to store the blogs in local storage and this useLocalStorageState is a custom hook that you can check
+
 const BlogContext = createContext();
 
 function BlogContextProvider({ children }) {

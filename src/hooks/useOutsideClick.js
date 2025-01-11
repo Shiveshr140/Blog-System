@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 
+//// This custom hook is detect the click outside and close the modal
 //// capture the event in capturing phase listenCapaturing = true
 export function useOutsideClick(handler, listenCapaturing = true) {
   const ref = useRef();

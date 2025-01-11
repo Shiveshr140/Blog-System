@@ -3,6 +3,11 @@ import { HiEllipsisVertical } from "react-icons/hi2";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 import { createPortal } from "react-dom";
 
+////********************************************* This is the Menus(compound component)
+//// I have used the create context to create it which is used to get the values from the parent to childs
+//// I have attach the childrens as the method to the parent
+//// Positions that I am calculating below is for the position of modal window that will show edit/duplicate/delete options
+
 const MenusContext = createContext();
 
 function Menus({ children, isDarkMode = false }) {
@@ -36,13 +41,7 @@ function Toggle({ id }) {
 
   return (
     <button
-      style={{
-        background: "none",
-        border: "none",
-        padding: "0.4rem",
-        transform: "translateX(0.8rem)",
-        transition: "all 0.2s",
-      }}
+      className="translate-x-[0.8rem] transform border-none bg-none p-[0.4rem] transition-all duration-200"
       onClick={handleClick}
     >
       <HiEllipsisVertical
@@ -61,16 +60,10 @@ function List({ id, children }) {
   return createPortal(
     <ul
       ref={ref}
+      className="fixed z-[1000] list-none rounded-lg bg-white py-2 shadow-md"
       style={{
-        position: "fixed",
         right: `${position.x}px`,
         top: `${position.y}px`,
-        backgroundColor: "#fff",
-        boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
-        borderRadius: "8px",
-        padding: "0.5rem 0",
-        zIndex: 1000,
-        listStyle: "none",
       }}
     >
       {children}
@@ -90,18 +83,7 @@ function Button({ children, icon, onClick }) {
   return (
     <li>
       <button
-        style={{
-          width: "100%",
-          textAlign: "left",
-          background: "none",
-          border: "none",
-          padding: ".8rem 1.4rem",
-          fontSize: "1rem",
-          display: "flex",
-          alignItems: "center",
-          gap: "1rem",
-          transition: "all 0.2s",
-        }}
+        className="flex w-full items-center gap-4 border-none bg-none px-4 py-[0.8rem] text-left text-base transition-all duration-200"
         onClick={handleClick}
       >
         {icon}
@@ -112,17 +94,7 @@ function Button({ children, icon, onClick }) {
 }
 
 function Menu({ children }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-end",
-      }}
-    >
-      {children}
-    </div>
-  );
+  return <div className="flex items-center justify-end">{children}</div>;
 }
 
 Menus.Menu = Menu;

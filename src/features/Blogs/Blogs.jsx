@@ -4,6 +4,9 @@ import Menus from "../../ui/Menus";
 import Blog from "./Blog";
 import BlogOperations from "./BlogsOperation";
 
+/////************* This Blogs Component is for showing all blogs
+//// I have done all blogs operations here such filter, sorting and searching and then passed blogs array
+
 function Blogs() {
   const { blogs, searchInput } = useBlog();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -57,10 +60,8 @@ function Blogs() {
 
   return (
     <Menus>
-      {/* Blog Operations */}
       <BlogOperations />
 
-      {/* Blog List */}
       <ul
         style={{
           listStyle: "none",
@@ -102,70 +103,3 @@ function Blogs() {
 }
 
 export default Blogs;
-
-// import { useSearchParams } from "react-router-dom";
-// import { useBlog } from "../../contexts/BlogContext";
-// import Menus from "../../ui/Menus";
-// import Blog from "./Blog";
-// import BlogOperations from "./BlogsOperation";
-
-// function Blogs() {
-//   const { blogs, searchInput } = useBlog();
-
-//   const [searchParams] = useSearchParams();
-
-//   // Filter
-//   const currentTag = searchParams.get("tag") || "all";
-//   console.log("Current Tag:", currentTag);
-
-//   const filteredBlogs = blogs.filter((blog) => {
-//     if (currentTag === "all") return true;
-
-//     // Normalize tags for comparison
-//     const normalizedTags = blog.tags
-//       .split(",")
-//       .map((tag) => tag.trim().toLowerCase());
-
-//     return normalizedTags.includes(currentTag.toLowerCase());
-//   });
-
-//   // SortBy
-//   const sortBy = searchParams.get("sortBy") || "createdAt-asc";
-//   const [field, direction] = sortBy.split("-");
-//   const modifier = direction === "asc" ? 1 : -1;
-//   const sortedPosts = filteredBlogs.sort(
-//     (a, b) => (a[field] - b[field]) * modifier
-//   );
-
-//   // Search
-//   let searchBlogs;
-//   if (searchInput) {
-//     searchBlogs = sortedPosts.filter((blog) => {
-//       const searchTerm = searchInput.toLowerCase();
-//       return (
-//         blog.author.toLowerCase().includes(searchTerm) ||
-//         blog.title.toLowerCase().includes(searchTerm) ||
-//         blog.tags.toLowerCase().includes(searchTerm)
-//       );
-//     });
-//   } else {
-//     searchBlogs = filteredBlogs;
-//   }
-
-//   return (
-//     <Menus>
-//       <BlogOperations />
-//       <ul>
-//         {searchBlogs.map((blog) => {
-//           const plainTextContent = blog.content.replace(/<\/?[^>]+(>|$)/g, "");
-
-//           return (
-//             <Blog key={blog.id} blog={blog} textContent={plainTextContent} />
-//           );
-//         })}
-//       </ul>
-//     </Menus>
-//   );
-// }
-
-// export default Blogs;

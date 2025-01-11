@@ -2,15 +2,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useBlog } from "../contexts/BlogContext";
 import { format } from "date-fns";
-import { HiArrowLeft, HiOutlineBackward } from "react-icons/hi2";
+import { HiArrowLeft } from "react-icons/hi2";
 
 function BlogDetailPage() {
-  const { id } = useParams(); // Get the id from URL
-  const { blogs } = useBlog(); // Custom hook to get blog data
+  const { id } = useParams();
+  const { blogs } = useBlog();
   const [blog, setBlog] = useState(null);
   const navigate = useNavigate();
 
-  // Find the blog by ID
   useEffect(() => {
     const selectedBlog = blogs.find((b) => b.id === id);
     setBlog(selectedBlog);
@@ -20,6 +19,7 @@ function BlogDetailPage() {
     return <div className="text-center">Loading...</div>;
   }
 
+  //// this is done to convert the content into plain text as content that we get from text editor is html
   const content = blog.content.replace(/<\/?[^>]+(>|$)/g, "");
 
   return (
@@ -44,10 +44,6 @@ function BlogDetailPage() {
             <HiArrowLeft className="h-4 w-4" />
             <span>Back</span>
           </button>
-          {/* <button className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-700">
-            <HiOutlineArrowUp className="h-5 w-5" />
-            <span>See Details</span>
-          </button> */}
         </div>
       </div>
     </div>
