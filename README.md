@@ -29,19 +29,17 @@ Currently, two official plugins are available:
 5. **Preview Production Build**
    npm run preview
 
-# Blog Application
-
-A feature-rich blog application built with **React** and **Vite**, leveraging modern tools and patterns to deliver an intuitive and responsive user experience.
-
----
 
 ## Features
 
-- **Create, Edit, and Delete Blogs**: Manage blog posts seamlessly.
+- **Create, Edit, Duplicate and Delete Blogs**: Manage blog posts seamlessly.
 - **Repost Functionality**: Share your favorite blogs with ease.
-- **Search and Filter**: Search for blogs based on title, author, or tags with filters applied dynamically.
+- **Search, Filter and Sorting**: Search for blogs based on title, author, or tags with filters applied dynamically.
 - **Responsive UI**: Styled with **Tailwind CSS** for a modern, mobile-friendly design.
 - **Advanced React Patterns**: Compound components for reusable and modular UI.
+- **Text Editor**: Rich Text Editor
+- **Dark/Light Mode**: You can switch to Dark/Light
+
 
 ---
 
