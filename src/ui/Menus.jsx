@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 
 const MenusContext = createContext();
 
-function Menus({ children }) {
+function Menus({ children, isDarkMode = false }) {
   const [openId, setOpenId] = useState("");
   const [position, setPosition] = useState(null);
 
@@ -14,7 +14,7 @@ function Menus({ children }) {
 
   return (
     <MenusContext.Provider
-      value={{ openId, position, close, open, setPosition }}
+      value={{ openId, position, close, open, setPosition, isDarkMode }}
     >
       {children}
     </MenusContext.Provider>
@@ -22,7 +22,8 @@ function Menus({ children }) {
 }
 
 function Toggle({ id }) {
-  const { openId, close, open, setPosition } = useContext(MenusContext);
+  const { openId, close, open, setPosition, isDarkMode } =
+    useContext(MenusContext);
 
   const handleClick = (e) => {
     const rect = e.target.closest("button").getBoundingClientRect();
@@ -45,11 +46,7 @@ function Toggle({ id }) {
       onClick={handleClick}
     >
       <HiEllipsisVertical
-        style={{
-          width: "2.4rem",
-          height: "1.7rem",
-          color: "#444",
-        }}
+        className={`h-7 w-9 ${isDarkMode ? "text-white" : "text-gray-70"}`}
       />
     </button>
   );
@@ -73,11 +70,12 @@ function List({ id, children }) {
         borderRadius: "8px",
         padding: "0.5rem 0",
         zIndex: 1000,
+        listStyle: "none",
       }}
     >
       {children}
     </ul>,
-    document.body
+    document.body,
   );
 }
 

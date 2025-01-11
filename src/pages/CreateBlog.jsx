@@ -1,13 +1,12 @@
 import CreatePost from "../features/user/CreatePost";
-import Header from "../ui/Header";
+// import Header from "../ui/Header";
 
-function Blog() {
+function CreateBlog() {
   return (
     <>
-      <Header />
       <CreatePost />
     </>
   );
 }
 
-export default Blog;
+export default CreateBlog;

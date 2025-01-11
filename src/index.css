@@ -1,3 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  height: 100%;
+}
+
 *,
 *::before,
 *::after {
@@ -6,10 +14,11 @@
   padding: 0;
 }
 
-.body {
+body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 .ql-container {
@@ -17,7 +26,7 @@
   font-size: 16px;
   line-height: 1.6;
   border-radius: 5px;
-  height: 300px; /* Ensures the container has a fixed height */
+  height: 300px !important;
 }
 
 .ql-toolbar {
@@ -27,9 +36,23 @@
 
 .ql-editor {
   padding: 15px;
-  overflow-y: auto; /* Prevents content overflow */
+  overflow-y: auto;
 }
 
 .ql-editor:focus {
   outline: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3); /* Subtle scrollbar thumb color */
+  border-radius: 4px; /* Rounded edges for a smooth look */
+  transition: background-color 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.6); /* Darker color on hover */
+}
+
+.modal::-webkit-scrollbar {
+  width: 4px;
 }
