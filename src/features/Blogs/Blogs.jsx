@@ -9,7 +9,7 @@ import BlogOperations from "./BlogsOperation";
 
 function Blogs() {
   const { blogs, searchInput } = useBlog();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   // Filter
   const currentTag = searchParams.get("tag") || "all";
@@ -18,7 +18,6 @@ function Blogs() {
   const filteredBlogs = blogs.filter((blog) => {
     if (currentTag === "all") return true;
 
-    // Normalize tags for comparison
     const normalizedTags = blog.tags
       .split(",")
       .map((tag) => tag.trim().toLowerCase());
@@ -37,7 +36,7 @@ function Blogs() {
 
     if (valueA < valueB) return -1 * modifier;
     if (valueA > valueB) return 1 * modifier;
-    return 0; // If equal, no change in order
+    return 0;
   });
 
   // Search

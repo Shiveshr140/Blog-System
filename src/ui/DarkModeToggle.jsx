@@ -4,7 +4,7 @@ import { useDarkMode } from "../contexts/DarkmodeContext";
 function DarkModeToggle() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   return (
-    <div onClick={toggleDarkMode}>
+    <div onClick={toggleDarkMode} className="cursor-pointer">
       {isDarkMode ? (
         <HiOutlineSun
           className={`h-5 w-5 ${isDarkMode ? "text-white" : "text-black"}`}
