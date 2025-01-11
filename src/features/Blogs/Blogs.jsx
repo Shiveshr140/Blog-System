@@ -6,8 +6,7 @@ import BlogOperations from "./BlogsOperation";
 
 function Blogs() {
   const { blogs, searchInput } = useBlog();
-
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // Filter
   const currentTag = searchParams.get("tag") || "all";
@@ -25,11 +24,11 @@ function Blogs() {
   });
 
   // SortBy
-  const sortBy = searchParams.get("sortBy") || "createdAt-asc";
+  const sortBy = searchParams.get("sortBy") || "createdAt-dsec";
   const [field, direction] = sortBy.split("-");
   const modifier = direction === "asc" ? 1 : -1;
 
-  const sortedPosts = filteredBlogs.sort((a, b) => {
+  const sortedBlogs = filteredBlogs.sort((a, b) => {
     const valueA = a[field];
     const valueB = b[field];
 
@@ -41,7 +40,10 @@ function Blogs() {
   // Search
   let searchBlogs;
   if (searchInput) {
-    searchBlogs = sortedPosts.filter((blog) => {
+    // if (!searchParams.has("tag") || searchParams.get("tag") !== "all") {
+    //   searchParams.set("tag", "all");
+    // }
+    searchBlogs = sortedBlogs.filter((blog) => {
       const searchTerm = searchInput.toLowerCase();
       return (
         blog.author.toLowerCase().includes(searchTerm) ||
@@ -50,7 +52,7 @@ function Blogs() {
       );
     });
   } else {
-    searchBlogs = filteredBlogs;
+    searchBlogs = sortedBlogs;
   }
 
   return (

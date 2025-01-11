@@ -1,10 +1,4 @@
-import {
-  HiOutlineArrowRight,
-  HiOutlineArrowUpCircle,
-  HiPencil,
-  HiSquare2Stack,
-  HiTrash,
-} from "react-icons/hi2";
+import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
 import { v4 as uuidv4 } from "uuid";
 import Menus from "../../ui/Menus";
 import TextExpander from "../../ui/TextExpander";
@@ -16,8 +10,8 @@ import toast from "react-hot-toast";
 import { format } from "date-fns";
 import { useUser } from "../../contexts/UserContext";
 import { useDarkMode } from "../../contexts/DarkmodeContext";
-import { HiOutlineArrowUp, HiOutlineRefresh } from "react-icons/hi";
 import DetailReposit from "../../ui/DetailReposit";
+import NotAuthorized from "../../ui/NotAuthorized";
 
 function Blog({ blog, textContent }) {
   const { isDarkMode } = useDarkMode();
@@ -45,6 +39,25 @@ function Blog({ blog, textContent }) {
     });
   }
 
+  function handleDuplicate() {
+    toast.success("Post is successfully reposted");
+    if (!blog) return;
+    const blogData = {
+      title,
+      tags,
+      author,
+      content,
+      createdAt: new Date().toISOString().split("T")[0],
+      id: uuidv4(),
+      reposted: false,
+    };
+
+    setBlogs((prev) => {
+      const newBlogs = Array.isArray(prev) ? [blogData, ...prev] : [blogData];
+      return newBlogs;
+    });
+  }
+
   function handleDelete() {
     toast.success("Post is successfully deleted");
     setBlogs((prev) => {
@@ -61,14 +74,17 @@ function Blog({ blog, textContent }) {
       } transition-all duration-300`}
     >
       {/* Menu Icon Positioned at Top Right */}
-      <div className="absolute right-4 top-4">
+      <div className="absolute right-4 top-4 z-10">
         <Modal>
           <Menus.Menu>
             <Menus.Toggle id={blog.id} />
             {userIsAuthor || reposted ? (
               <Menus.List id={blog.id}>
-                <Menus.Button icon={<HiSquare2Stack />} onClick={handleRepost}>
-                  Repost
+                <Menus.Button
+                  icon={<HiSquare2Stack />}
+                  onClick={handleDuplicate}
+                >
+                  Duplicate
                 </Menus.Button>
                 <Modal.Open opens="edit">
                   <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
@@ -79,14 +95,7 @@ function Blog({ blog, textContent }) {
               </Menus.List>
             ) : (
               <Menus.List id={blog.id}>
-                <p
-                  className={`text-sm ${
-                    isDarkMode ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  Sorry! You are not the author of this post and cannot perform
-                  edit, delete, or repost operations.
-                </p>
+                <NotAuthorized />
               </Menus.List>
             )}
             <Modal.Window name="edit">
@@ -101,7 +110,7 @@ function Blog({ blog, textContent }) {
 
       {/* Blog Content */}
       <h2
-        className={`mb-[.5px] text-xl font-semibold ${
+        className={`mb-[.5px] max-w-[90%] text-xl font-semibold ${
           isDarkMode ? "text-white" : "text-gray-800"
         }`}
       >

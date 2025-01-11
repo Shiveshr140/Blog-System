@@ -31,7 +31,7 @@ function CreateUser() {
         placeholder="Your full name"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        className={`mb-8 w-full rounded-full border sm:w-72 md:w-96 ${
+        className={`mb-8 w-60 rounded-full border sm:w-72 md:w-96 ${
           isDarkMode
             ? "border-gray-600 bg-gray-700 text-gray-100"
             : "border-stone-400 bg-white text-gray-900"

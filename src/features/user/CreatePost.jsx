@@ -280,12 +280,17 @@ function CreatePost({ blog = {} }) {
       setTitle(blog.title);
       setTags(blog.tags);
       setAuthor(blog.author);
-      setContent(blog.content); // If blog content exists, set it
+      setContent(blog.content);
     }
   }, [blog]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (content === "") {
+      toast.error(`Please fill the content`);
+      return;
+    }
+
     let blogData;
 
     if (blog.id) {
@@ -335,6 +340,7 @@ function CreatePost({ blog = {} }) {
           onChange={(e) => setTitle(e.target.value)}
           placeholder={blog.title ? "" : "Title"}
           className="w-full rounded border border-gray-300 p-2.5 text-lg font-bold text-black"
+          required
         />
 
         {/* Tags */}
@@ -346,6 +352,7 @@ function CreatePost({ blog = {} }) {
             blog?.tags ? "" : "Tags (e.g., React, JavaScript, Web Development)"
           }
           className="w-full rounded border border-gray-300 p-2.5 text-black"
+          required
         />
 
         {/* Author */}
@@ -355,6 +362,7 @@ function CreatePost({ blog = {} }) {
           onChange={(e) => setAuthor(e.target.value)}
           placeholder={blog.author ? "" : "Author Name"}
           className="w-full rounded border border-gray-300 p-2.5 text-black"
+          required
         />
 
         {/* Content */}

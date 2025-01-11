@@ -16,10 +16,10 @@ function Home() {
 
       {/* Main content container */}
       <div
-        className={`w-full px-4 py-10 text-center sm:my-16 ${isDarkMode ? "bg-gray-900 text-gray-100" : "text-gray-900"} min-h-0 flex-1`}
+        className={`w-full px-4 py-3 text-center sm:my-16 ${isDarkMode ? "bg-gray-900 text-gray-100" : "text-gray-900"} min-h-0 flex-1`}
       >
         <h1
-          className={`mb-8 text-xl font-semibold md:text-3xl ${isDarkMode ? "text-white" : "text-black"}`}
+          className={`mb-4 text-xl font-semibold md:text-3xl ${isDarkMode ? "text-white" : "text-black"}`}
         >
           Welcome to the blog.
           <br />
