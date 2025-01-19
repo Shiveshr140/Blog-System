@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import AppLayout from "./ui/AppLayout";
 import Home from "./pages/home";
-import Blogs from "./features/Blogs/Blogs";
+// import Blogs from "./features/Blogs/Blogs";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import BlogDetailPage from "./pages/BlogDetail";
 import CreateBlog from "./pages/CreateBlog";
@@ -10,6 +10,7 @@ import { DarkModeContextProvider } from "./contexts/DarkmodeContext";
 import { BlogContextProvider } from "./contexts/BlogContext";
 import { UserContextProvider } from "./contexts/UserContext";
 import "./index.css";
+import BlogsPage from "./pages/BlogsPage";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
                   </ProtectedRoute>
                 }
               >
-                <Route path="blogs" element={<Blogs />} />
+                <Route path="blogs" element={<BlogsPage />} />
                 <Route path="blogs/:id" element={<BlogDetailPage />} />
                 <Route path="blog" element={<CreateBlog />} />
               </Route>

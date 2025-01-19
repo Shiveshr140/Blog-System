@@ -5,7 +5,7 @@ import { HiXMark } from "react-icons/hi2";
 
 ////********************************************* This is the Menus(compound component)
 //// I have used the create context to create it which is used to get the values from the parent to childs
-//// I have attach the childerns as the method to the parrent
+//// I have attach the childrens as the method to the parrent
 
 // Step 1: Create context
 const ModalContext = createContext();

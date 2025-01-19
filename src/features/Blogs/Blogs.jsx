@@ -78,19 +78,7 @@ function Blogs() {
           return (
             <li
               key={blog.id}
-              style={{
-                backgroundColor: "#ffffff",
-                borderRadius: "10px",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                overflow: "hidden",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.transform = "scale(1.02)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.transform = "scale(1)")
-              }
+              className="overflow-hidden rounded-lg bg-white shadow-lg transition-transform duration-300 ease-in-out hover:scale-105"
             >
               <Blog blog={blog} textContent={plainTextContent} />
             </li>

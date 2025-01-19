@@ -16,7 +16,7 @@ function CreateEditBlog({ blog = {} }) {
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
   const { setBlogs } = useBlog();
-  const { isDarkMode } = useDarkMode();
+  // const { isDarkMode } = useDarkMode();
 
   useEffect(() => {
     if (blog && blog.content) {
@@ -63,7 +63,6 @@ function CreateEditBlog({ blog = {} }) {
       setBlogs((prev) => [blogData, ...prev]);
     }
 
-    // Optionally clear form fields after submission
     setTitle("");
     setAuthor("");
     setTags("");
